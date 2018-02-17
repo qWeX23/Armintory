@@ -1,0 +1,97 @@
+<script type="text/javascript" src="../../public/js/ammo.js"></script>
+<table class='highlight'>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>caliber</th>
+            <th>round</th>
+            <th>case</th>
+            <th># Rounds</th>
+            <th>CPR</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each ammo}}
+        <tr onclick="tableRowClick('{{_id}}')">
+            <td>{{name}}</td>
+            <td>{{caliber}}</td>
+            <td>{{round}}</td>
+            <td>{{case}}</td>
+            <td>{{numRounds}}</td>
+            <td>{{cpr}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+
+
+<a class="waves-effect waves-light btn" href="/ammo/add">Add Ammo</a>
+<script type="text/javascript">  
+    $(document).ready(function () {
+        // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
+    });
+</script>
+
+<!-- Modal Structure -->
+<div id="editmodal" class="modal">
+    <div class="modal-content" id="editmodalcontent">
+        <div class="container">
+            <form action="/ammo/edit" method="post">
+                <div class='row'>
+                    <input id="_id" type="hidden" name="_id" value="">
+                    <div class="input-field col s6">
+                        <input placeholder="name" id="name" name="name" type="text" class="validate">
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <select id='caliber' name="caliber">
+                            {{#each calibers }}
+                            <option id="{{name}}" value="{{name}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                        <label for='caliber'>Caliber</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <select id='round' name="round">
+                            {{#each rounds }}
+                            <option id="{{name}}" value="{{name}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                        <label for='round'>Round</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <select id='case' name="case">
+                            {{#each cases }}
+                            <option id="{{name}}" value="{{name}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                        <label for='case'>Case</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="number" id="numRounds" name="numRounds">
+                        <label for="numRounds">Total Rounds</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="number" id="cpr" name="cpr" min=0 step="any">
+                        <label for="cpr">Cost per Round</label>
+                    </div>
+                </div>
+                <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Update</button>
+                <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+            </form>
+            {{!--
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <i class="material-icons right">add_circle</i>
+            </button> --}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="container">
+  <form action="/ammo/edit" method="post">
+    <div class='row'>
+      <div class="input-field col s6">
+        <input placeholder="name" id="name" name="name" type="text" class="validate" value="{{name}}">
+        <label for="name">Name</label>
+      </div>
+       <div class="input-field col s6">
+        <select id='caliber' name="caliber">
+          {{#each calibers }}
+          <option value="{{name}}">{{name}}</option>
+          {{/each}}
+        </select>
+        <label for='caliber'>Caliber</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <select id='round' name="round">
+          {{#each rounds }}
+          <option value="{{name}}">{{name}}</option>
+          {{/each}}
+        </select>
+        <label for='round'>Round</label>
+      </div>
+      <div class="input-field col s6">
+        <select id='case' name="case">
+          {{#each cases }}
+          <option value="{{name}}">{{name}}</option>
+          {{/each}}
+        </select>
+        <label for='case'>Round</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="number" id="numRounds" name="numRounds">
+        <label for="numRounds">Total Rounds</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="number" id="cpr" name="cpr" min=0 step="any">
+        <label for="cpr">Cost per Round</label>
+      </div>
+    </div>
+  </form>
+  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">add_circle</i>
+  </button>
+</div>
